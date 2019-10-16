@@ -22,4 +22,27 @@ nums[i] will be an integer between 0 and 49,999.
 
 var findShortestSubArray = function(nums) {
 
+  let numCount = {};
+
+  for (let elm of nums) {
+    if (!numCount[elm]){
+      numCount[elm]=[1,((nums.lastIndexOf(elm) - nums.indexOf(elm))+1)]
+    }else{
+      numCount[elm][0]++
+    }
+  }
+
+  let answer=numCount[Object.keys(numCount)[0]];
+
+  for (let key in numCount) {
+    if (numCount[key][0] > answer[0]){
+      answer = numCount[key]
+    }
+    if (numCount[key][0] >= answer[0] && numCount[key][1] <= answer[1]){
+      answer = numCount[key]
+    }
+  }
+  return answer[1];
 };
+
+console.log(findShortestSubArray([1,2,2,3,1,4,2]))
