@@ -18,5 +18,5 @@ Follow up: Could you solve it without loops/recursion?
 */
 
 var isPowerOfFour = function(num) {
-    
+    return (Math.log(num)/Math.log(4))%1===0?true:false;
 };
